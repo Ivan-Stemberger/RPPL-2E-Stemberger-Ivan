@@ -67,10 +67,10 @@ namespace PetShop_Clases
 
         private static List<Producto> cargarListaProductos(List<Producto> lista)
         {
-            lista.Add(new Producto("Royal Cannin", Producto.ETipo.Alimentos, 30, 750));
-            lista.Add(new Producto("Sogas", Producto.ETipo.Juguetes, 15, 250));
-            lista.Add(new Producto("Cucha", Producto.ETipo.Camas, 5, 1200));
-            lista.Add(new Producto("Pipeta", Producto.ETipo.Farmacia, 40, 1500));
+            lista.Add(new Producto("Royal Cannin", Producto.ETipo.Alimentos, 5, 30, 750));
+            lista.Add(new Producto("Sogas", Producto.ETipo.Juguetes, 1, 15, 250));
+            lista.Add(new Producto("Cucha", Producto.ETipo.Camas, 5, 5, 1200));
+            lista.Add(new Producto("Pipeta", Producto.ETipo.Farmacia, 0.2, 40, 1500));
 
             return lista;
         }
@@ -89,10 +89,10 @@ namespace PetShop_Clases
         private static List<Venta> cargarListaVentas(List<Venta> lista)
         {
 
-            lista.Add(new Venta("RoyalCannin", Producto.ETipo.Alimentos, 1, 750, "30658978"));
-            lista.Add(new Venta("Sogas", Producto.ETipo.Juguetes, 2, 250, "25943542"));
-            lista.Add(new Venta("Cucha", Producto.ETipo.Camas, 1, 1200, "34512682"));
-            lista.Add(new Venta("Pipeta", Producto.ETipo.Farmacia, 2, 1500, "25943542"));
+            lista.Add(new Venta("RoyalCannin", 1, 5, 750, "30658978"));
+            lista.Add(new Venta("Sogas", 2, 2, 250, "25943542"));
+            lista.Add(new Venta("Cucha", 1, 5, 1200, "34512682"));
+            lista.Add(new Venta("Pipeta", 2, 0.4,1500, "25943542"));
 
             return lista;
         }

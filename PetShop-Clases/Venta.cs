@@ -11,34 +11,36 @@ namespace PetShop_Clases
     {
 
         string dniCliente;
-        float precioFinal;
-        public enum Eenvio { moto, miniflete};
-        public Eenvio envio;
-
+        double precioFinal;
+        
+        
         public string DniCliente
         {
             get { return dniCliente; }
             set { this.dniCliente = value; }
         }
-        public float PrecioFinal
+        public double PrecioFinal
         {
             get { return precioFinal; }
             set { this.precioFinal = value; }
         }
 
-        public Venta(string descripcion, ETipo tipo, int cantidad, float precio, string dni):base(descripcion, tipo, cantidad, precio)
+        public Venta(string descripcion, int cantidad, double peso, double precio, string dni) : base(descripcion, cantidad, precio)
         {
+            bool check = true;
+
             this.DniCliente = dni;
+            this.Peso = peso;
             this.PrecioFinal = calculoPrecio(cantidad, precio);
-            this.envio = definirEnvio(this.Peso);
         }
 
-
-        public Venta (string descripcion,int cantidad, float precio, string dni):base(descripcion, cantidad, precio)
+        public Venta (string descripcion,int cantidad, double precio, string dni):base(descripcion, cantidad, precio)
         {
+            bool check = true;
+            
             this.DniCliente = dni;
-            this.PrecioFinal = calculoPrecio(cantidad,precio);
-            this.envio = definirEnvio(this.Peso);
+            this.Peso = buscarPeso(descripcion);
+            this.PrecioFinal = calculoPrecio(cantidad, precio);
         }
 
         /// <summary>
@@ -46,9 +48,9 @@ namespace PetShop_Clases
         /// </summary>
         /// <param name="lista">listado de productos en el carrito</param>
         /// <returns>Devuelve el precio final de los productos del carrito.</returns>
-        public static float precioFinalCarrito(List<Producto> lista)
+        public static double precioFinalCarrito(List<Producto> lista)
         {
-            float precio = 0;
+            double precio = 0;
 
             foreach(Producto item in lista)
             {
@@ -63,15 +65,31 @@ namespace PetShop_Clases
         /// </summary>
         /// <param name="producto">Producto.</param>
         /// <returns>devuelve el precio.</returns>
-        protected virtual float calculoPrecio (int cantidad, float precio)
+        protected virtual double calculoPrecio (int cantidad, double precio)
         {
+
             return precio * cantidad;
             
         }
 
-        protected override float buscarPeso(string descripcion)
+        private double calcularPeso(string descripcion, int cantidad)
         {
-            float peso = 0;
+            List<Producto> lista = Colecciones.getListaProductos();
+
+            foreach (Producto item in lista)
+            {
+                if (item.Descripcion.Equals(descripcion))
+                {
+                    item.Peso *= Cantidad;
+                    return item.Peso;
+                }
+            }
+            return 0;
+        }
+        
+        protected override double buscarPeso(string descripcion)
+        {
+            
             List<Producto> lista = Colecciones.getCarrito();
             
             foreach (Producto item in lista)
@@ -85,27 +103,6 @@ namespace PetShop_Clases
             return 0;
         }
 
-        public float pesoFinal(string descripcion)
-        {
-            float peso = 0;
-
-            peso = +buscarPeso(descripcion);
-
-            return peso;
-        }
-
-        public Eenvio definirEnvio(float peso)
-        {
-            if(peso >30)
-            {
-                return Eenvio.miniflete;
-            }
-            else
-            {
-                return Eenvio.moto;
-            }
-
-        }
 
         /// <summary>
         /// Crea un ticket con la última venta realizada.

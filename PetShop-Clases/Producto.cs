@@ -18,8 +18,8 @@ namespace PetShop_Clases
             Farmacia
         }
         int cantidad;
-        float peso;
-        float precio;
+        double peso;
+        double precio;
        
 
         public ETipo tipo;
@@ -35,12 +35,12 @@ namespace PetShop_Clases
             set { this.cantidad = value; }
         }
 
-        public float Peso
+        public double Peso
         {
             get { return peso; }
             set { this.peso = value; }
         }
-        public float Precio
+        public double Precio
         {
             get { return precio; }
             set { this.precio = value; }
@@ -54,7 +54,7 @@ namespace PetShop_Clases
             this.Peso = buscarPeso(descripcion);
             this.Precio = buscarPrecio(descripcion);
         }
-        public Producto(string descripcion, int cantidad, float precio)
+        public Producto(string descripcion, int cantidad, double precio)
         {
 
             this.Descripcion = descripcion;
@@ -64,13 +64,15 @@ namespace PetShop_Clases
             this.Precio = buscarPrecio(descripcion);
         }
 
-        public Producto (string descripcion, ETipo tipo, int cantidad, float precio)
+        public Producto (string descripcion, ETipo tipo, double peso, int cantidad, double precio)
         {
             
             this.Descripcion = descripcion;
             this.tipo = tipo;
+            this.Peso = peso;
             this.Cantidad = cantidad;
             this.Precio = precio;
+            
         }
 
         /// <summary>
@@ -78,7 +80,7 @@ namespace PetShop_Clases
         /// </summary>
         /// <param name="descripcion">string descripción del producto</param>
         /// <returns>Devuelve el precio si encuentra el producto, sino devuelve 0</returns>
-        private static float buscarPrecio(string descripcion)
+        private static double buscarPrecio(string descripcion)
         {
             List<Producto> lista = Colecciones.getListaProductos();
 
@@ -97,7 +99,7 @@ namespace PetShop_Clases
         /// </summary>
         /// <param name="descripcion">string descripción del producto</param>
         /// <returns>Devuelve el tipo si encuentra el producto, sino devuelve "Alimentos" como default.</returns>
-        private static ETipo buscarTipo(string descripcion)
+        protected static ETipo buscarTipo(string descripcion)
         {
             List<Producto> lista = Colecciones.getListaProductos();
 
@@ -111,7 +113,7 @@ namespace PetShop_Clases
             return ETipo.Alimentos;
         }
 
-        protected virtual float buscarPeso(string descripcion)
+        protected virtual double buscarPeso(string descripcion)
         {
             List<Producto> lista = Colecciones.getListaProductos();
 
