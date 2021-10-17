@@ -1,0 +1,2 @@
+Producto       Cantidad   Precio
+Royal Cannin       1      750
