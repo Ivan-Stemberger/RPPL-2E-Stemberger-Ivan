@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace PetShop_Clases
 {
-    class InvalidDniException
+    public class InvalidDniException:Exception
     {
+        public override string Message
+        {
+            get
+            {
+                return "El DNI ingresado es inválido.";
+            }
+        }
     }
 }

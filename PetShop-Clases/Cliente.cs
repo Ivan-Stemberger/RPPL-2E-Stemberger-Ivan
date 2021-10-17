@@ -22,7 +22,6 @@ namespace PetShop_Clases
             }
         }
 
-
         public Cliente (string nombre, string apellido, string dni):base(nombre,apellido)
         {
             this.Dni = dni;

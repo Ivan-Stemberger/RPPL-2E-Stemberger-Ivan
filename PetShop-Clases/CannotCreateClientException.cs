@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace PetShop_Clases
 {
-    class CannotCreateClientException
+    public class CannotCreateClientException:Exception
     {
+        public override string Message
+        {
+            get
+            {
+                return "No se puede cargar el nuevo cliente porque alguno de los datos es incorrecto.";
+            }
+        }
     }
 }
