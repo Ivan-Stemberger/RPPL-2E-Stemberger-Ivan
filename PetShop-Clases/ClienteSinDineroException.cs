@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace PetShop_Clases
 {
-    class ClienteSinDineroException
+    public class ClienteSinDineroException:Exception
     {
+        public override string Message
+        {
+            get
+            {
+                return "Dinero insuficiente.";
+            }
+        }
+
     }
 }

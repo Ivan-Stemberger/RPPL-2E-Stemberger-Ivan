@@ -113,8 +113,6 @@ namespace PetShop_Clases
             string fileName = @"C:\Users\Usuario\source\repos\PetShop-Front\Ticket.txt";
             StringBuilder sb = new StringBuilder();
 
-            
-            
             if (File.Exists(fileName))
             {
                 File.Delete(fileName);
@@ -132,11 +130,41 @@ namespace PetShop_Clases
                     sb.Append(item.Cantidad.ToString() + "      ");
                     sb.AppendLine(item.precioFinal.ToString());
                 }
-                
+
                 Byte[] ticket = new UTF8Encoding(true).GetBytes(sb.ToString());
                 fs.Write(ticket);
             }
+        }
+        public static void exportarCsv(List<Venta> ventas)
+        {
+            string fileName = @"C:\Users\Usuario\source\repos\Recu2\Facturacion.csv";
+            StringBuilder sb = new StringBuilder();
 
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+
+            using (StreamWriter writer = new StreamWriter(new FileStream(fileName, FileMode.Create, FileAccess.Write)))
+            {
+
+                sb.Append("Producto,");
+                sb.Append("Precio Unitarion,");
+                sb.Append("Cantidad,");
+                sb.Append("Cliente,");
+                sb.AppendLine("Monto total");
+
+                foreach (Venta item in ventas)
+                {
+                    sb.Append(item.Descripcion +",");
+                    sb.Append(item.Precio+",");
+                    sb.Append(item.Cantidad.ToString()+",");
+                    sb.Append(item.dniCliente + ",");
+                    sb.AppendLine(item.precioFinal.ToString());
+                }
+
+                writer.WriteLine(sb.ToString());
+            }
         }
     }
 }
