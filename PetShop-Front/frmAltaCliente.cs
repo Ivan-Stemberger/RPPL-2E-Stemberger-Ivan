@@ -42,5 +42,24 @@ namespace PetShop_Front
         {
             this.Close();
         }
+
+        private void frmAltaCliente_Load(object sender, EventArgs e)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is Button)
+                {
+                    control.BackColor = Color.LightSeaGreen;
+                }
+                else if (control is MenuStrip)
+                {
+                    control.BackColor = Color.Cyan;
+                }
+                else if (control is CheckBox)
+                {
+                    control.BackColor = Color.LightBlue;
+                }
+            }
+        }
     }
 }

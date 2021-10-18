@@ -91,6 +91,7 @@ namespace PetShop_Front
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnBorrarEmpleado);
@@ -99,6 +100,7 @@ namespace PetShop_Front
             this.Controls.Add(this.btnVerEmpleados);
             this.Name = "frmEmpleados";
             this.Text = "frmEmpleados";
+            this.Load += new System.EventHandler(this.frmEmpleados_Load);
             this.ResumeLayout(false);
 
         }

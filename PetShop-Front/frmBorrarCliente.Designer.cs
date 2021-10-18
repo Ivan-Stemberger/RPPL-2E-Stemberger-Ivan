@@ -77,6 +77,7 @@ namespace PetShop_Front
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(232, 223);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
@@ -85,6 +86,7 @@ namespace PetShop_Front
             this.Name = "frmBorrarCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmBorrarCliente";
+            this.Load += new System.EventHandler(this.frmBorrarCliente_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

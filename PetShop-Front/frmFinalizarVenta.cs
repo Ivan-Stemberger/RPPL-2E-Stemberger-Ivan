@@ -18,50 +18,90 @@ namespace PetShop_Front
         {
             InitializeComponent();
             dtgvVentas.DataSource = Colecciones.getCarrito();
-            lblPrecioFinal.Text = Venta.precioFinalCarrito(Colecciones.getCarrito()).ToString();
+            
         }
 
         private void btnConfirmarVenta_Click(object sender, EventArgs e)
         {
-            
+
             List<Producto> carrito = Colecciones.getCarrito();
             List<Venta> listaVenta = Colecciones.getListaVentas();
             List<Venta> current = new List<Venta>();
             Venta venta;
+            double pago;
 
-            if (Cliente.buscarCliente(txtDniCliente.Text))
+            try
             {
-                foreach (Producto item in carrito)
+                if (Cliente.validarDni(txtDniCliente.Text))
                 {
-                    if (!Producto.confirmarStock(item, Colecciones.getListaProductos()))
+                    if (Cliente.buscarCliente(txtDniCliente.Text))
                     {
-                        StringBuilder sb = new StringBuilder();
-                        sb.Append("No hay stock suficiente de ");
-                        sb.Append(item.Descripcion);
+                        foreach (Producto item in carrito)
+                        {
+                            if (!Producto.confirmarStock(item, Colecciones.getListaProductos()))
+                            {
+                                StringBuilder sb = new StringBuilder();
+                                sb.Append("No hay stock suficiente de ");
+                                sb.Append(item.Descripcion);
 
-                        MessageBox.Show(sb.ToString());
+                                MessageBox.Show(sb.ToString());
+                            }
+                            else
+                            {
+
+                                venta = new Venta(item.Descripcion, item.Cantidad, item.Precio, txtDniCliente.Text);
+                                listaVenta.Add(venta);
+                                current.Add(venta);
+
+                            }
+                        }
+
+                        if (double.TryParse(txtPago.Text, out pago) && pago > Venta.precioFinalCarrito(Colecciones.getCarrito()))
+                        {
+                            double vuelto = pago - Venta.precioFinalCarrito(Colecciones.getCarrito());
+
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append("La venta ha sido confirmada. Su vuelto es ");
+                            sb.Append(vuelto.ToString());
+                            MessageBox.Show(sb.ToString());
+                            Venta.crearTicket(current);
+
+                            this.Close();
+
+                        }
+                        else
+                        {
+                            ClienteSinDineroException exception = new ClienteSinDineroException();
+                            throw exception;
+                        }
+
+
                     }
                     else
                     {
-                        
-                        venta = new Venta(item.Descripcion, item.Cantidad, item.Precio, txtDniCliente.Text);
-                        listaVenta.Add(venta);
-                        current.Add(venta);
-                        
+                        ClientNotFoundException exception = new ClientNotFoundException();
+                        throw exception;
                     }
                 }
-                    Venta.crearTicket(current);
-                    MessageBox.Show("La venta ha sido confirmada.");
-                    this.Close();
-               
+                else
+                {
+                    InvalidDniException exception = new InvalidDniException();
+                    throw exception;
+                }
             }
-            else
+                
+            catch(ClienteSinDineroException ex)
             {
-                frmNuevoCliente frmNuevoCliente = new frmNuevoCliente();
-                frmNuevoCliente.Show();
+                MessageBox.Show(ex.Message);
             }
-
-            
+            catch(ClientNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch(InvalidDniException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -69,5 +109,32 @@ namespace PetShop_Front
             this.Close();
         }
 
+        private void frmFinalizarVenta_Load(object sender, EventArgs e)
+        {
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is Button)
+                {
+                    control.BackColor = Color.LightSeaGreen;
+                }
+                else if (control is MenuStrip)
+                {
+                    control.BackColor = Color.Cyan;
+                }
+                else if (control is CheckBox)
+                {
+                    control.BackColor = Color.LightBlue;
+                }
+            }
+
+            Envio envio = new Envio();
+
+            lblTipoEnvio.Text = "Envio: " + envio.tipoEnvio.ToString();
+            lblDistancia.Text = "Distancia: " + envio.Distancia.ToString();
+            lblMonto.Text = "Monto del envio: " + envio.Precio.ToString();
+            lblPrecioFinal.Text = (Venta.precioFinalCarrito(Colecciones.getCarrito()) + envio.Precio).ToString();
+
+        }
     }
 }

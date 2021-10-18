@@ -104,6 +104,7 @@ namespace PetShop_Front
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.btnVolver);
@@ -114,6 +115,7 @@ namespace PetShop_Front
             this.Controls.Add(this.txtDescripcion);
             this.Name = "frmVenta";
             this.Text = "frmVenta";
+            this.Load += new System.EventHandler(this.frmVenta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

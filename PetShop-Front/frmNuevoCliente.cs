@@ -24,26 +24,53 @@ namespace PetShop_Front
             
             Cliente cliente = new Cliente(txtName.Text, txtApellido.Text, txtDni.Text);
 
-            if(cliente.Nombre != null && cliente.Apellido != null && cliente.Dni != null)
-            {
-                List<Cliente> lista = Colecciones.getListaClientes();
-                lista.Add(cliente);
-                MessageBox.Show("El cliente ha sido correctamente creado");
-                txtName.Text = string.Empty;
-                txtApellido.Text = string.Empty;
-                txtDni.Text = string.Empty;
-            }
-            else
-            {
-                MessageBox.Show("Los datos introducidos no son válido.");
-            }
 
-
+            try
+            {
+                if (cliente.Nombre != null && cliente.Apellido != null && cliente.Dni != null)
+                {
+                    List<Cliente> lista = Colecciones.getListaClientes();
+                    lista.Add(cliente);
+                    MessageBox.Show("El cliente ha sido correctamente creado");
+                    txtName.Text = string.Empty;
+                    txtApellido.Text = string.Empty;
+                    txtDni.Text = string.Empty;
+                }
+                else
+                {
+                    CannotCreateClientException exception = new CannotCreateClientException();
+                    throw exception;
+                }
+            }
+            catch(CannotCreateClientException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmNuevoCliente_Load(object sender, EventArgs e)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is Button)
+                {
+                    control.BackColor = Color.LightSeaGreen;
+                }
+                else if (control is MenuStrip)
+                {
+                    control.BackColor = Color.Cyan;
+                }
+                else if (control is CheckBox)
+                {
+                    control.BackColor = Color.LightBlue;
+                }
+            }
         }
     }
 }

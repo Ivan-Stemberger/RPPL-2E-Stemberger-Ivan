@@ -36,9 +36,12 @@ namespace PetShop_Front
             // 
             // dtgvListaClientes
             // 
+            this.dtgvListaClientes.AllowUserToAddRows = false;
+            this.dtgvListaClientes.AllowUserToDeleteRows = false;
             this.dtgvListaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvListaClientes.Location = new System.Drawing.Point(24, 12);
             this.dtgvListaClientes.Name = "dtgvListaClientes";
+            this.dtgvListaClientes.ReadOnly = true;
             this.dtgvListaClientes.RowTemplate.Height = 25;
             this.dtgvListaClientes.Size = new System.Drawing.Size(746, 256);
             this.dtgvListaClientes.TabIndex = 0;
@@ -57,11 +60,13 @@ namespace PetShop_Front
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dtgvListaClientes);
             this.Name = "frmVerClientes";
             this.Text = "frmVerClientes";
+            this.Load += new System.EventHandler(this.frmVerClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvListaClientes)).EndInit();
             this.ResumeLayout(false);
 

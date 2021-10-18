@@ -65,6 +65,51 @@ namespace PetShop_Front
            
         }
 
-        
+        protected virtual void cbxDarkMode_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            if (cbxDarkMode.Checked)
+            {
+                foreach(Control control in this.Controls)
+                {
+                    if(control is Button)
+                    {
+                        control.BackColor = Color.MediumSeaGreen;
+                    }
+                    else if(control is MenuStrip)
+                    {
+                        control.BackColor = Color.DarkCyan;
+                    }
+                    else if(control is CheckBox)
+                    {
+                        control.BackColor = Color.White;
+                    }
+                }
+                this.BackColor = Color.DarkBlue;
+                
+            }
+            else
+            {
+                foreach (Control control in this.Controls)
+                {
+                    if (control is Button)
+                    {
+                        control.BackColor = Color.LightSeaGreen;
+                    }
+                    else if (control is MenuStrip)
+                    {
+                        control.BackColor = Color.Cyan;
+                    }
+                    else if (control is CheckBox)
+                    {
+                        control.BackColor = Color.LightBlue;
+                    }
+                }
+
+                this.BackColor = Color.LightBlue;
+
+            }
+            
+        }
     }
 }

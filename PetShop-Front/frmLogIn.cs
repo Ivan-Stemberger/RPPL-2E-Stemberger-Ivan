@@ -20,8 +20,6 @@ namespace PetShop_Front
             Colecciones.cargarListas();
         }
 
-       
-
         private void button1_Click(object sender, EventArgs e)
         {
             
@@ -30,28 +28,54 @@ namespace PetShop_Front
 
 
             List<Usuario> listaUsuarios = Colecciones.getListaUsuarios();
-            
-            if (!Usuario.confirmarcontraseña(listaUsuarios, password, usuario))
+
+            try
             {
-                MessageBox.Show("El usuario o contraseña son incorrectos. Intente de nuevo.");
-            }
-            else 
-            {
-                if (!Usuario.confirmarRole(listaUsuarios, usuario))
+                if (!Usuario.confirmarcontraseña(listaUsuarios, password, usuario))
                 {
-                    Form frmMenuEmpleado = new frmMenuEmpleado();
-                    frmMenuEmpleado.Show();
-                    txtUser.Text = string.Empty;
-                    txtPassword.Text = string.Empty;
+                    UsuarioInvalidoException exception = new UsuarioInvalidoException();
+                    throw exception;
                 }
                 else
                 {
-                    Form frmMenuAdmin = new FrmMenuAdmin();
-                    frmMenuAdmin.ShowDialog();
+                    if (!Usuario.confirmarRole(listaUsuarios, usuario))
+                    {
+                        Form frmMenuEmpleado = new frmMenuEmpleado();
+                        frmMenuEmpleado.Show();
+                        txtUser.Text = string.Empty;
+                        txtPassword.Text = string.Empty;
+                    }
+                    else
+                    {
+                        Form frmMenuAdmin = new FrmMenuAdmin();
+                        frmMenuAdmin.ShowDialog();
+                    }
                 }
             }
-
+            catch(UsuarioInvalidoException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
-        
+
+        private void frmLogIn_Load(object sender, EventArgs e)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is Button)
+                {
+                    control.BackColor = Color.LightSeaGreen;
+                }
+                else if (control is MenuStrip)
+                {
+                    control.BackColor = Color.Cyan;
+                }
+                else if (control is CheckBox)
+                {
+                    control.BackColor = Color.LightBlue;
+                }
+            }
+        }
     }
 }

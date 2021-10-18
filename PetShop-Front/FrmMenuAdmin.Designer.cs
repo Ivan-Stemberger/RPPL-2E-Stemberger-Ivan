@@ -43,6 +43,7 @@ namespace PetShop_Front
             this.btnEmpleadosInfo.TabIndex = 2;
             this.btnEmpleadosInfo.Text = "Información de los empleados";
             this.btnEmpleadosInfo.UseVisualStyleBackColor = true;
+            this.btnEmpleadosInfo.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnEmpleadosInfo.Click += new System.EventHandler(this.btnEmpleadosInfo_Click);
             // 
             // btnFacturacion
@@ -53,6 +54,7 @@ namespace PetShop_Front
             this.btnFacturacion.TabIndex = 3;
             this.btnFacturacion.Text = "Facturación";
             this.btnFacturacion.UseVisualStyleBackColor = true;
+            this.btnFacturacion.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnFacturacion.Click += new System.EventHandler(this.btnFacturacion_Click);
             // 
             // logOutToolStripMenuItem
@@ -69,7 +71,7 @@ namespace PetShop_Front
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnFacturacion);
             this.Controls.Add(this.btnEmpleadosInfo);

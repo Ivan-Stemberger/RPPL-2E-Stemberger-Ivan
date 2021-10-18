@@ -80,18 +80,20 @@ namespace PetShop_Front
             this.btnLogIn.UseVisualStyleBackColor = true;
             this.btnLogIn.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Form1
+            // frmLogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.passwordLbl);
             this.Controls.Add(this.userlbl);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUser);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frmLogIn";
+            this.Text = "frmLogIn";
+            this.Load += new System.EventHandler(this.frmLogIn_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

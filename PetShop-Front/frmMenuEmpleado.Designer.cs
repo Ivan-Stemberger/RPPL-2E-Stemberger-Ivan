@@ -34,27 +34,30 @@ namespace PetShop_Front
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbxDarkMode = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAltaCliente
             // 
+            this.btnAltaCliente.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnAltaCliente.Location = new System.Drawing.Point(101, 58);
             this.btnAltaCliente.Name = "btnAltaCliente";
             this.btnAltaCliente.Size = new System.Drawing.Size(208, 80);
             this.btnAltaCliente.TabIndex = 0;
             this.btnAltaCliente.Text = "Alta Cliente";
-            this.btnAltaCliente.UseVisualStyleBackColor = true;
+            this.btnAltaCliente.UseVisualStyleBackColor = false;
             this.btnAltaCliente.Click += new System.EventHandler(this.btnAltaCliente_Click);
             // 
             // btnVenta
             // 
+            this.btnVenta.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnVenta.Location = new System.Drawing.Point(498, 58);
             this.btnVenta.Name = "btnVenta";
             this.btnVenta.Size = new System.Drawing.Size(208, 80);
             this.btnVenta.TabIndex = 1;
             this.btnVenta.Text = "Nueva Venta";
-            this.btnVenta.UseVisualStyleBackColor = true;
+            this.btnVenta.UseVisualStyleBackColor = false;
             this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
             // 
             // menuStrip1
@@ -82,12 +85,24 @@ namespace PetShop_Front
             this.logOutToolStripMenuItem.Text = "Log Out";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
+            // cbxDarkMode
+            // 
+            this.cbxDarkMode.AutoSize = true;
+            this.cbxDarkMode.Location = new System.Drawing.Point(0, 36);
+            this.cbxDarkMode.Name = "cbxDarkMode";
+            this.cbxDarkMode.Size = new System.Drawing.Size(84, 19);
+            this.cbxDarkMode.TabIndex = 3;
+            this.cbxDarkMode.Text = "Dark Mode";
+            this.cbxDarkMode.UseVisualStyleBackColor = true;
+            this.cbxDarkMode.CheckedChanged += new System.EventHandler(this.cbxDarkMode_CheckedChanged);
+            // 
             // frmMenuEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Highlight;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbxDarkMode);
             this.Controls.Add(this.btnVenta);
             this.Controls.Add(this.btnAltaCliente);
             this.Controls.Add(this.menuStrip1);
@@ -111,5 +126,6 @@ namespace PetShop_Front
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem opcionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
+        private System.Windows.Forms.CheckBox cbxDarkMode;
     }
 }
